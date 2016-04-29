@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class FishingGame
 	{
+		//TestTestTestTestTestTest
 		static String username;
 		String castRod;
 		String difficultyChoice;
