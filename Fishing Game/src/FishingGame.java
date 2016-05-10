@@ -1,9 +1,13 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 public class FishingGame
 	{
-		//TestTestTestTestTestTest
-		static String username;
+		private static final long serialVersionUID = 1L;
+		static JFrame frame = new JFrame();
+		static int areaChoice;static String username;
 		String castRod;
 		String difficultyChoice;
 		static String area;
@@ -21,6 +25,9 @@ public class FishingGame
 				decideArea();
 				teachFishing();
 				castRod();
+				doAmazonRiver();
+				doHawaii();
+				doTheGreatBarrierReef();
 			}
 		public static void getHawaiiFish()
 		{
@@ -300,22 +307,58 @@ public class FishingGame
 		{
 			Scanner userInput = new Scanner(System.in);
 			String username = userInput.nextLine();
-			System.out.println("Alright " + username + " Now the real question is... Where would you like to fish? Type the letter of the area!");
+			System.out.println("Alright " + username);
+			try
+				{
+					Thread.sleep(1650);
+				} catch (InterruptedException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		}
 		public static void decideArea()
+		{		
+				Object[] options = {"The Amazon River", "Hawaii", "The Great Barrier Reef"};
+				ImageIcon icon =  new ImageIcon("betterfish.gif");
+				areaChoice = JOptionPane.showOptionDialog(null, 
+					"Where would you like to fish?",
+					"Decide Your Fishing Area",
+					JOptionPane.YES_NO_CANCEL_OPTION,
+					JOptionPane.QUESTION_MESSAGE, 
+					icon,
+					options, 
+					options[1]);
+					switch(areaChoice)
+					{
+					case 0:
+						{
+						JOptionPane.showMessageDialog(frame, "The Amazing River eh? Not too difficult but watch out for the Pirhanas!!!");
+						doAmazonRiver();
+						break;
+						}
+					case 1:
+						{
+						JOptionPane.showMessageDialog(frame, "Probably the most beautiful place to go fishing! Let's go!!!");
+						doHawaii();
+						break;
+						}
+					case 2:
+						{
+						JOptionPane.showMessageDialog(frame, "The fish here are real big! Prepare yourself...");
+						doTheGreatBarrierReef();
+						break;
+						}
+					}
+		}
+		private static ImageIcon createImageIcon(String string)
+			{
+				// TODO Auto-generated method stub
+				return null;
+			}
+		public static void doAmazonRiver()
 		{
-			System.out.println();
-			System.out.println("(A) The Amazon River (Easiest Difficulty)");
-			System.out.println("(B) Hawaii (Medium Difficulty)");
-			System.out.println("(C) The Great Barrier Reef (Hardest Difficulty)");
-			Scanner userInput3 = new Scanner(System.in);
-			String area = userInput3.nextLine();
-			switch(area)
-			{   
-				case "a":
-				case "A":
 							areaFish = 1;
-							System.out.println("The Amazing River eh? Not too difficult but watch out for the Pirhanas!!!");
 							try
 								{
 									Thread.sleep(1000);
@@ -391,10 +434,9 @@ public class FishingGame
 							System.out.println("    ~-^~^-`~^~-^~^`^~^-^~^`^~^-~^");
 							System.out.println("");
 							System.out.println("We've arived at the Amazon River... Now let's learn how to fish!");
-							break;
-				case "b":
-				case "B":
-						{
+		}
+						public static void doHawaii()
+	{
 							areaFish = 2;
 							System.out.println("Probably the most beautiful place to go fishing! Let's go!!!");
 							System.out.println(".");
@@ -464,11 +506,10 @@ public class FishingGame
 							System.out.println("    ~-^~^-`~^~-^~^`^~^-^~^`^~^-~^");
 							System.out.println("");
 							System.out.println("We've arived at Hawaii... Now let's learn how to fish!");
-							break;
+							
 						}
-				case "c":
-				case "C":
-						{
+				public static void doTheGreatBarrierReef()
+					{
 							areaFish = 3;
 							System.out.println("The fish here are real big! Prepare yourself...");
 							System.out.println(".");
@@ -538,21 +579,9 @@ public class FishingGame
 							System.out.println("    ~-^~^-`~^~-^~^`^~^-^~^`^~^-~^");
 							System.out.println("");
 							System.out.println("We've arived at the Great Barrier Reef... Now let's learn how to fish!");
-							break;
 						}
-						default:
-						{
-							System.out.println("    _   __      __     ___    ____                       __");
-							System.out.println("   / | / /___  / /_   /   |  / / /___ _      _____  ____/ /");
-							System.out.println("  /  |/ / __\\/ __/  / \\/| / / / __ \\| /| / / _ \\/__  / ");
-							System.out.println(" / /|  / /_/ / /_   / ___ |/ / / /_/ / |/ |/ /  __/ /_/ /  ");
-							System.out.println("/_/ |_/\\___/\\_/  /_/  |_/_/_/\\___/|__/|__/\\__/\\_,_/   ");
-							System.out.println();
-							System.out.println("Please only input A or B or C");
-							decideArea();
-						}
-			}
-		}			
+			
+					
 		public static void teachFishing()
 		{
 			try
@@ -589,17 +618,7 @@ public class FishingGame
 				{
 							case " ":
 									{
-										if (rodCast != " ")
-											{
-												System.out.println("    _   __      __     ___    ____                       __");
-												System.out.println("   / | / /___  / /_   /   |  / / /___ _      _____  ____/ /");
-												System.out.println("  /  |/ / __\\/ __/  / \\/| / / / __ \\| /| / / _ \\/__  / ");
-												System.out.println(" / /|  / /_/ / /_   / ___ |/ / / /_/ / |/ |/ /  __/ /_/ /  ");
-												System.out.println("/_/ |_/\\___/\\_/  /_/  |_/_/_/\\___/|__/|__/\\__/\\_,_/   ");
-												System.out.println();
-												System.out.println("You need to type the Space Bar then Enter Key to cast...");
-												castRod();
-											}
+									
 										System.out.println(".");
 										try
 											{
